@@ -1,42 +1,67 @@
-from turtle import Screen
+import copy
+import turtle
+from typing import List
 import time
 import color_base
 import numpy as np
 
-def tween_value(current: float, target: float, rate: float, minimum: float) -> float:
-    diff = target - current
-    delta = diff * rate
-    if abs(delta) < minimum:
-        if abs(diff) <= minimum:
-            return target
+
+def tween_value(current: List[float], target: List[float], rate: float, minimum: float) -> List[float]:
+    res = []
+    for curr, tgt in zip(current, target):
+        diff = tgt - curr
+        delta = diff * rate
+        if abs(delta) < minimum:
+            if abs(diff) <= minimum:
+                res.append(tgt)
+            else:
+                delta = np.sign(delta) * minimum
+                res.append(curr + delta)
         else:
-            delta = np.sign(delta) * minimum
+            res.append(curr + delta)
 
-    return current + delta
+    return res
 
-screen = Screen()
-screen.setup(width=600, height=600)
 
-deltaTime = 1 / 30
-cur_color = color_base.Color()
+t = turtle.Turtle()
+
+deltaTime = 1000
+width, height = 200, 200
+
+start_color = color_base.Color()
+cur_color = copy.deepcopy(start_color)
 
 target_color = color_base.Color()
 target_color.r = 100 / 255
 target_color.g = 200 / 255
 target_color.b = 200 / 255
 
-screen.bgcolor(cur_color.r, cur_color.g, cur_color.b)
-screen.title("Color")
+
+def update_colors():
+    t.color(cur_color.rgb)
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(width)
+        t.right(90)
+        t.forward(height)
+        t.right(90)
+    t.end_fill()
+
+    t.penup()
+    t.forward(width + 50)
+    t.pendown()
+
+    t.color(cur_color.rgb)
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(width)
+        t.right(90)
+        t.forward(height)
+        t.right(90)
+    t.end_fill()
+
+    turtle.update()
 
 
-while True:
-    time.sleep(deltaTime)
-    screen.bgcolor(cur_color.r, cur_color.g, cur_color.b)
-    cur_color.r = tween_value(cur_color.r, target_color.r, 0.1, 0.02)
-    cur_color.g = tween_value(cur_color.g, target_color.g, 0.1, 0.02)
-    cur_color.b = tween_value(cur_color.b, target_color.b, 0.1, 0.02)
-    screen.update()
-
-screen.exitonclick()
-
-
+update_colors()
+turtle.mainloop()
