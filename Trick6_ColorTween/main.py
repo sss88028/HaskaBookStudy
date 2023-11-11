@@ -1,67 +1,40 @@
 import copy
 import turtle
-from typing import List
 import time
-import color_base
-import numpy as np
+import utility
+from tween_color_set import TweenColor
+from color_base import Color
+from coloredshape import Circle
+from update_manager import UpdateManager
 
+delta_time = 1 / 30
 
-def tween_value(current: List[float], target: List[float], rate: float, minimum: float) -> List[float]:
-    res = []
-    for curr, tgt in zip(current, target):
-        diff = tgt - curr
-        delta = diff * rate
-        if abs(delta) < minimum:
-            if abs(diff) <= minimum:
-                res.append(tgt)
-            else:
-                delta = np.sign(delta) * minimum
-                res.append(curr + delta)
-        else:
-            res.append(curr + delta)
+start_color = Color([0, 0, 0])
 
-    return res
+target_color1 = Color([100 / 255, 200 / 255, 150 / 255])
+target_color2 = Color([255 / 255, 0 / 255, 0 / 255])
 
+circle1 = Circle(color=start_color, radius=75, x=-100)
+tween_color1 = TweenColor(circle1, copy.deepcopy(start_color), target_color1)
 
-t = turtle.Turtle()
+circle2 = Circle(color=start_color, radius=75, x=100)
+tween_color2 = TweenColor(circle2, copy.deepcopy(start_color), target_color2)
 
-deltaTime = 1000
-width, height = 200, 200
+update_manager = UpdateManager()
+update_manager.add(circle1)
+update_manager.add(circle2)
 
-start_color = color_base.Color()
-cur_color = copy.deepcopy(start_color)
+screen = turtle.Screen()
+screen.tracer(0)
+screen.listen()
 
-target_color = color_base.Color()
-target_color.r = 100 / 255
-target_color.g = 200 / 255
-target_color.b = 200 / 255
+game_is_on = True
+while game_is_on:
+    screen.update()
+    update_manager.update(delta_time)
+    time.sleep(delta_time)
 
+    tween_color1.tween_color(delta_time, 5, 0.05)
+    tween_color2.tween_color(delta_time, 5, 0.05)
 
-def update_colors():
-    t.color(cur_color.rgb)
-    t.begin_fill()
-    for _ in range(2):
-        t.forward(width)
-        t.right(90)
-        t.forward(height)
-        t.right(90)
-    t.end_fill()
-
-    t.penup()
-    t.forward(width + 50)
-    t.pendown()
-
-    t.color(cur_color.rgb)
-    t.begin_fill()
-    for _ in range(2):
-        t.forward(width)
-        t.right(90)
-        t.forward(height)
-        t.right(90)
-    t.end_fill()
-
-    turtle.update()
-
-
-update_colors()
-turtle.mainloop()
+screen.exitonclick()

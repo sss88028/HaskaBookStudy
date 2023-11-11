@@ -1,9 +1,9 @@
 from typing import List
 
 class Color:
-
-    def __init__(self):
+    def __init__(self, arr : List[float]):
         self._color_array = [0, 0, 0]
+        self.rgb = arr
 
     @property
     def rgb(self):

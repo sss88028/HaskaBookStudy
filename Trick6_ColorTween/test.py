@@ -9,7 +9,7 @@ t2 = turtle.Turtle()
 
 # 设置两个圆形的属性
 radius1 = 50
-radius2 = 30
+radius2 = 50
 
 # 设置初始颜色
 color1 = "red"
