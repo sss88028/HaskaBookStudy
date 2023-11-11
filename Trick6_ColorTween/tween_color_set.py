@@ -10,6 +10,8 @@ class TweenColor:
 
     def tween_color(self, delta_time: float, rate: float, minimum: float):
         (c, isEnd) = utility.tween_value(self._circle.color.rgb, self._color_set[0].rgb, rate * delta_time, minimum)
-        if isEnd:
-            self._color_set[0], self._color_set[1] = self._color_set[1], self._color_set[0]
         self._circle.color.rgb = c
+        return isEnd
+
+    def swap_color(self):
+        self._color_set[0], self._color_set[1] = self._color_set[1], self._color_set[0]

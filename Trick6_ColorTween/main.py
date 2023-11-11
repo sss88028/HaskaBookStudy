@@ -34,7 +34,10 @@ while game_is_on:
     update_manager.update(delta_time)
     time.sleep(delta_time)
 
-    tween_color1.tween_color(delta_time, 5, 0.05)
-    tween_color2.tween_color(delta_time, 5, 0.05)
+    isEnd = tween_color1.tween_color(delta_time, 5, 0.05)
+    isEnd = tween_color2.tween_color(delta_time, 5, 0.05) and isEnd
+    if isEnd:
+        tween_color1.swap_color()
+        tween_color2.swap_color()
 
 screen.exitonclick()
