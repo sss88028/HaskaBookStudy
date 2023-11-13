@@ -1,5 +1,5 @@
-from coloredshape import Circle
-from color_base import Color
+from Utility.coloredshape import Circle
+from Utility.color_base import Color
 import utility
 
 

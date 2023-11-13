@@ -1,6 +1,5 @@
 import copy
-from color_base import Color
-from abc import ABC, abstractmethod
+from Utility.color_base import Color
 from update_manager import UpdateObject
 import turtle
 
