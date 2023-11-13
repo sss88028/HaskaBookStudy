@@ -36,7 +36,7 @@ draw_points(random_0, red_color)
 random_1 = getrandompoints.PolarRandomPoints(radius=r / 2, x=-r / 2, y=r / 2)
 draw_points(random_1, blue_color)
 
-random_2 = getrandompoints.BetterPolorRandomPoints()
+random_2 = getrandompoints.BetterPolorRandomPoints(radius=r / 2, x=-r / 2, y=-r / 2)
 draw_points(random_2, blue_color)
 
 screen.exitonclick()

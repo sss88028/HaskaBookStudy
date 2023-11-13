@@ -50,9 +50,10 @@ class PolarRandomPoints(GetRandomPoints):
         return [new_x, new_y]
 
 
-def BetterPolorRandomPoints(PolarRandomPoints):
-    def __init__(self):
-        super.__init__()
+class BetterPolorRandomPoints(PolarRandomPoints):
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def get_points(self, size: int) -> List[Tuple[float, float]]:
         res = []
