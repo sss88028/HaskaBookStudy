@@ -1,5 +1,5 @@
-from Utility.coloredshape import Circle
-from Utility.color_base import Color
+from Trick6_ColorTween.coloredshape import Circle
+from Trick6_ColorTween.color_base import Color
 import utility
 
 

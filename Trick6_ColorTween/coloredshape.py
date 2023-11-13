@@ -1,5 +1,5 @@
 import copy
-from Utility.color_base import Color
+from Trick6_ColorTween.color_base import Color
 from update_manager import UpdateObject
 import turtle
 

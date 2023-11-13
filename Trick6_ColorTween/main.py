@@ -2,9 +2,9 @@ import copy
 import turtle
 import time
 from tween_color_set import TweenColor
-from Utility.color_base import Color
-from Utility.coloredshape import Circle
-from Utility.update_manager import UpdateManager
+from Trick6_ColorTween.color_base import Color
+from Trick6_ColorTween.coloredshape import Circle
+from Trick6_ColorTween.update_manager import UpdateManager
 
 delta_time = 1 / 30
 
