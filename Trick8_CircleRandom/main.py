@@ -29,6 +29,8 @@ random.seed(seed_value)
 
 red_color = Color([1, 0, 0])
 blue_color = Color([0, 0, 1])
+green_color = Color([0, 0.5, 0])
+purple_color = Color([0.5, 0, 0.5])
 
 random_0 = getrandompoints.RectangleRandomPoints(radius=r / 2, x=r / 2, y=r / 2)
 draw_points(random_0, red_color)
@@ -36,7 +38,10 @@ draw_points(random_0, red_color)
 random_1 = getrandompoints.PolarRandomPoints(radius=r / 2, x=-r / 2, y=r / 2)
 draw_points(random_1, blue_color)
 
-random_2 = getrandompoints.BetterPolorRandomPoints(radius=r / 2, x=-r / 2, y=-r / 2)
-draw_points(random_2, blue_color)
+random_2 = getrandompoints.SqrtPolorRandomPoints(radius=r / 2, x=-r / 2, y=-r / 2)
+draw_points(random_2, green_color)
+
+random_3 = getrandompoints.BetterPolorRandomPoints(radius=r / 2, x=r / 2, y=-r / 2)
+draw_points(random_3, purple_color)
 
 screen.exitonclick()
