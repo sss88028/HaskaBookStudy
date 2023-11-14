@@ -73,7 +73,7 @@ class BetterPolorRandomPoints(PolarRandomPoints):
     def get_points(self, size: int) -> List[Tuple[float, float]]:
         res = []
         while len(res) < size:
-            length = self._radius - abs((random.random() + random.random() - 1) * self._radius)
+            length = (1 - abs((random.random() + random.random() - 1))) * self._radius
             angle = random.random() * 2 * math.pi
             points = self.get_polor_point(length, angle)
             res.append((self._x + points[0], self._y + points[1]))
