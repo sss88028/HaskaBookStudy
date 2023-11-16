@@ -79,3 +79,22 @@ class BetterPolorRandomPoints(PolarRandomPoints):
             res.append((self._x + points[0], self._y + points[1]))
 
         return res
+
+
+class RadiusRandomPoints(PolarRandomPoints):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._min_range = kwargs.get('min_range', 0.0)
+
+    def get_points(self, size: int) -> List[Tuple[float, float]]:
+        res = []
+        while len(res) < size:
+            length = (1 - abs((random.random() + random.random() - 1)))
+            length = self._min_range + (1 - self._min_range) * length
+            length = length * self._radius
+            angle = random.random() * 2 * math.pi
+            points = self.get_polor_point(length, angle)
+            res.append((self._x + points[0], self._y + points[1]))
+
+        return res

@@ -42,7 +42,11 @@ draw_points(random_1, blue_color, points_count)
 random_2 = getrandompoints.SqrtPolorRandomPoints(radius=r / 2, x=-r / 2, y=-r / 2)
 draw_points(random_2, green_color, points_count)
 
-random_3 = getrandompoints.BetterPolorRandomPoints(radius=r / 2, x=r / 2, y=-r / 2)
+# random_3 = getrandompoints.BetterPolorRandomPoints(radius=r / 2, x=r / 2, y=-r / 2)
+random_3 = getrandompoints.RadiusRandomPoints(radius=r / 2, x=r / 2, y=-r / 2, min_range= 0.7)
 draw_points(random_3, purple_color, points_count)
+
+# random_4 = getrandompoints.BetterPolorRandomPoints(radius=r / 2 * 0.2, x=r / 2, y=-r / 2)
+# draw_points(random_4, red_color, points_count)
 
 screen.exitonclick()
